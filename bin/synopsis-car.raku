@@ -8,10 +8,10 @@ use Physics::Measure :ALL;
 #%th<FuelConsumption> = <Area FuelConsumption>;
 
 class Car {
-    has Mass $.mass;
+    has Mass   $.mass;
     has Volume $.cc;
-    has Power $.hp;
-    has FuelConsumption() $.burn;     #() coerce to correct type
+    has Power  $.hp;
+    has FuelConsumption() $.burn;       #() coerce eg. from Area
 
     method gist {
         "Car.new: mass => $.mass, cc => $.cc, hp => $.hp, burn => $.burn";
@@ -25,8 +25,8 @@ class Car {
         $.burn;
     }
 
-    method ea-rating {
-        $.efficiency * $.agility;
+    method ea-rating {                  # made up metric
+        $.efficiency.value * $.agility.value;
     }
 
 }
@@ -40,4 +40,4 @@ dd $vw-golf1.burn;
 
 say $vw-golf1.agility;
 say $vw-golf8.efficiency;
-#say $vw-golf8.ea-rating;    #wip
+say $vw-golf8.ea-rating cmp $vw-golf1.ea-rating;
